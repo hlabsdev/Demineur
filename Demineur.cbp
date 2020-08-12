@@ -13,7 +13,13 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
+					<Add directory="include" />
 				</Compiler>
+				<Linker>
+					<Add library="sfml-graphics-d" />
+					<Add library="sfml-window-d" />
+					<Add library="sfml-system-d" />
+				</Linker>
 			</Target>
 			<Target title="Release">
 				<Option output="bin/Release/Demineur" prefix_auto="1" extension_auto="1" />
@@ -22,17 +28,39 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-O2" />
+					<Add directory="include" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
+					<Add library="sfml-graphics" />
+					<Add library="sfml-window" />
+					<Add library="sfml-system" />
 				</Linker>
 			</Target>
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
+			<Add directory="C:/Program Files/CodeBlocks/MinGW/SFML-2.5.1/include" />
 		</Compiler>
+		<Linker>
+			<Add directory="C:/Program Files/CodeBlocks/MinGW/SFML-2.5.1/lib" />
+		</Linker>
+		<Unit filename="include/AssetManager.h" />
+		<Unit filename="include/DEFINITIONS.hpp" />
+		<Unit filename="include/Etat.hpp" />
+		<Unit filename="include/EtatMachine.h" />
+		<Unit filename="include/Game.hpp" />
+		<Unit filename="include/ImputManager.h" />
+		<Unit filename="include/MainMenuState.hpp" />
+		<Unit filename="include/SplashState.hpp" />
 		<Unit filename="main.cpp" />
+		<Unit filename="src/AssetManager.cpp" />
+		<Unit filename="src/EtatMachine.cpp" />
+		<Unit filename="src/Game.cpp" />
+		<Unit filename="src/ImputManager.cpp" />
+		<Unit filename="src/MainMenuState.cpp" />
+		<Unit filename="src/SplashState.cpp" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>
