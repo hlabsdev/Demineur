@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1597174825 source:d:\clients\demineur\main.cpp
+1597446862 source:d:\clients\demineur\main.cpp
 	<iostream>
 	"Game.hpp"
 	"DEFINITIONS.hpp"
@@ -419,8 +419,8 @@
 	<SFML/Graphics/Drawable.hpp>
 	<SFML/Window/GlResource.hpp>
 
-1597170996 source:d:\clients\demineur\src\etatmachine.cpp
-	"EtatMachine.h"
+1597441903 source:d:\clients\demineur\src\etatmachine.cpp
+	"EtatMachine.hpp"
 
 1597170996 d:\clients\demineur\include\etatmachine.h
 	<memory>
@@ -429,53 +429,90 @@
 
 1597175278 d:\clients\demineur\include\etat.hpp
 
-1597170996 source:d:\clients\demineur\src\assetmanager.cpp
-	"AssetManager.h"
+1597441897 source:d:\clients\demineur\src\assetmanager.cpp
+	"AssetManager.hpp"
+	<SFML/Graphics.hpp>
 
-1597176601 d:\clients\demineur\include\assetmanager.h
+1597435674 d:\clients\demineur\include\assetmanager.h
 	<map>
 	<SFML/Graphics.hpp>
 
-1597170996 source:d:\clients\demineur\src\imputmanager.cpp
-	"ImputManager.h"
+1597442438 source:d:\clients\demineur\src\imputmanager.cpp
+	"ImputManager.hpp"
 
 1597176581 d:\clients\demineur\include\imputmanager.h
 	<SFML/Graphics.hpp>
 
-1597174919 d:\clients\demineur\include\game.hpp
+1597441096 d:\clients\demineur\include\game.hpp
 	<memory>
 	<string>
-	"EtatMachine.h"
-	"AssetManager.h"
-	"ImputManager.h"
+	"EtatMachine.hpp"
+	"AssetManager.hpp"
+	"ImputManager.hpp"
 	<SFML/Graphics.hpp>
 
-1597224175 d:\clients\demineur\include\definitions.hpp
+1597447776 d:\clients\demineur\include\definitions.hpp
 
-1597186972 source:d:\clients\demineur\src\splashstate.cpp
+1597446821 source:d:\clients\demineur\src\splashstate.cpp
 	<sstream>
 	"SplashState.hpp"
 	<iostream>
 	"DEFINITIONS.hpp"
 	"MainMenuState.hpp"
 
-1597175921 d:\clients\demineur\include\splashstate.hpp
+1597441747 d:\clients\demineur\include\splashstate.hpp
 	"Etat.hpp"
 	"Game.hpp"
 	<SFML/Graphics.hpp>
 
-1597175937 source:d:\clients\demineur\src\game.cpp
+1597438252 source:d:\clients\demineur\src\game.cpp
 	"Game.hpp"
 	"SplashState.hpp"
+	"MainMenuState.hpp"
 
 1597224216 d:\clients\demineur\include\mainmenustate.hpp
 	<SFML/Graphics.hpp>
 	"Etat.hpp"
 	"Game.hpp"
 
-1597224709 source:d:\clients\demineur\src\mainmenustate.cpp
+1597446886 source:d:\clients\demineur\src\mainmenustate.cpp
 	<sstream>
+	"MainMenuState.hpp"
+	"GameState.hpp"
+	"DEFINITIONS.hpp"
 	<iostream>
+
+1514518636 d:\clients\demineur\include\statemachine.hpp
+	<memory>
+	<stack>
+	"State.hpp"
+
+1514518636 d:\clients\demineur\include\state.hpp
+
+1597441236 d:\clients\demineur\include\assetmanager.hpp
+	<map>
+	<SFML/Graphics.hpp>
+
+1514518636 d:\clients\demineur\include\inputmanager.hpp
+	"SFML\Graphics.hpp"
+
+1597441411 d:\clients\demineur\include\etatmachine.hpp
+	<memory>
+	<stack>
+	"Etat.hpp"
+
+1597440936 d:\clients\demineur\include\imputmanager.hpp
+	<SFML/Graphics.hpp>
+
+1597446646 source:d:\clients\demineur\src\gamestate.cpp
+	<sstream>
+	"GameState.hpp"
 	"MainMenuState.hpp"
 	"DEFINITIONS.hpp"
+	<iostream>
+
+1597446555 d:\clients\demineur\include\gamestate.hpp
+	<SFML/Graphics.hpp>
+	"Etat.hpp"
+	"Game.hpp"
 

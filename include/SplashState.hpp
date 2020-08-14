@@ -4,24 +4,26 @@
 #include "Game.hpp"
 #include <SFML/Graphics.hpp>
 
-namespace TepeGolo{
+namespace TepeGolo
+{
 
-    class SplashState:public Etat
+    class SplashState : public Etat
     {
-        public:
-            SplashState(GameDataRef data);
+    public:
+        SplashState(GameDataRef data);
 
-            void Init();
+        void Init();
 
-            void GererEntrer();
-            void Update(float dt);
-            void Dessiner(float dt);
-        protected:
+        void GererEntrer();
+        void Update(float dt);
+        void Dessiner(float dt);
 
-        private:
-            GameDataRef _data;
-            sf::Clock _clock;
-            sf::Sprite _background;
+    protected:
+    private:
+        GameDataRef _data;
+        sf::Clock _clock;
+        sf::Texture _backgroundTexture;
+        sf::Sprite _background;
     };
 
-}
+} // namespace TepeGolo

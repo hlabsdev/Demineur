@@ -1,8 +1,10 @@
 #pragma once
+
 #include <map>
 #include <SFML/Graphics.hpp>
 
-namespace TepeGolo {
+namespace TepeGolo
+{
     class AssetManager
     {
     public:
@@ -16,10 +18,8 @@ namespace TepeGolo {
         sf::Font &GetFont(std::string nom);
 
     protected:
-
     private:
         std::map<std::string, sf::Texture> _textures;
         std::map<std::string, sf::Font> _fonts;
     };
-}
-
+} // namespace TepeGolo

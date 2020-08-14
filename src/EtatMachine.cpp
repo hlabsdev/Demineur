@@ -1,18 +1,22 @@
-#include "EtatMachine.h"
+#include "EtatMachine.hpp"
 
-namespace TepeGolo {
-    void EtatMachine::AjoutEtat(EtatRef newEtat, bool estRemplacer) {
+namespace TepeGolo
+{
+    void EtatMachine::AjoutEtat(EtatRef newEtat, bool estRemplacer)
+    {
         this->_estAjouter = true;
-        this->_estRemplacer = true;
+        this->_estRemplacer = estRemplacer;
 
         this->_newEtat = std::move(newEtat);
     }
 
-    void EtatMachine::RetireEtat() {
+    void EtatMachine::RetireEtat()
+    {
         this->_estEnlever = true;
     }
 
-    void EtatMachine::ProcessEtatChange() {
+    void EtatMachine::ProcessEtatChange()
+    {
         if (this->_estEnlever && !this->_etats.empty())
         {
             this->_etats.pop();
@@ -40,10 +44,9 @@ namespace TepeGolo {
             this->_etats.top()->Init();
             this->_estAjouter = false;
         }
-
-
     }
-    EtatRef &EtatMachine::GetActiveEtat() {
+    EtatRef &EtatMachine::GetActiveEtat()
+    {
         return this->_etats.top();
     }
-}
+} // namespace TepeGolo

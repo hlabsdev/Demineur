@@ -2,9 +2,9 @@
 
 #include <memory>
 #include <string>
-#include "EtatMachine.h"
-#include "AssetManager.h"
-#include "ImputManager.h"
+#include "EtatMachine.hpp"
+#include "AssetManager.hpp"
+#include "ImputManager.hpp"
 #include <SFML/Graphics.hpp>
 
 namespace TepeGolo {

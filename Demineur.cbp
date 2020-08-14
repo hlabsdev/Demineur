@@ -46,18 +46,20 @@
 		<Linker>
 			<Add directory="C:/Program Files/CodeBlocks/MinGW/SFML-2.5.1/lib" />
 		</Linker>
-		<Unit filename="include/AssetManager.h" />
+		<Unit filename="include/AssetManager.hpp" />
 		<Unit filename="include/DEFINITIONS.hpp" />
 		<Unit filename="include/Etat.hpp" />
-		<Unit filename="include/EtatMachine.h" />
+		<Unit filename="include/EtatMachine.hpp" />
 		<Unit filename="include/Game.hpp" />
-		<Unit filename="include/ImputManager.h" />
+		<Unit filename="include/GameState.hpp" />
+		<Unit filename="include/ImputManager.hpp" />
 		<Unit filename="include/MainMenuState.hpp" />
 		<Unit filename="include/SplashState.hpp" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/AssetManager.cpp" />
 		<Unit filename="src/EtatMachine.cpp" />
 		<Unit filename="src/Game.cpp" />
+		<Unit filename="src/GameState.cpp" />
 		<Unit filename="src/ImputManager.cpp" />
 		<Unit filename="src/MainMenuState.cpp" />
 		<Unit filename="src/SplashState.cpp" />

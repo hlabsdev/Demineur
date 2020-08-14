@@ -4,14 +4,15 @@
 #include <stack>
 #include "Etat.hpp"
 
-namespace TepeGolo {
+namespace TepeGolo
+{
     typedef std::unique_ptr<Etat> EtatRef;
 
     class EtatMachine
     {
     public:
-        EtatMachine() {};
-        ~EtatMachine() {};
+        EtatMachine(){};
+        ~EtatMachine(){};
 
         void AjoutEtat(EtatRef newEtat, bool estRemplacer = true);
         void RetireEtat();
@@ -19,8 +20,6 @@ namespace TepeGolo {
         void ProcessEtatChange();
 
         EtatRef &GetActiveEtat();
-
-    protected:
 
     private:
         std::stack<EtatRef> _etats;
@@ -30,4 +29,4 @@ namespace TepeGolo {
         bool _estRemplacer;
         bool _estAjouter;
     };
-}
+} // namespace TepeGolo

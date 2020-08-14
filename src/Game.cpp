@@ -1,12 +1,13 @@
 #include "Game.hpp"
 #include "SplashState.hpp"
+#include "MainMenuState.hpp"
 
 namespace TepeGolo {
     Game::Game(int largeur, int hauteur, std::string titre) {
         //_data->fenetre.create(sf::VideoMode(largeur, hauteur), titre, sf::Style::Close|sf::Style::Titlebar);
         _data->fenetre.create(sf::VideoMode(largeur, hauteur), titre, sf::Style::Close | sf::Style::Titlebar);
-        //_data->machine.AjoutEtat(EtatRef(new SplashState(this->_data)));
         _data->machine.AjoutEtat(EtatRef(new SplashState(this->_data)));
+        //_data->machine.AjoutEtat(EtatRef(new MainMenuState(this->_data)));
 
 
         this->Run();

@@ -1,7 +1,9 @@
-#include "ImputManager.h"
+#include "ImputManager.hpp"
 
-namespace TepeGolo {
-    bool ImputManager::IsSpriteClicked(sf::Sprite object, sf::Mouse::Button button, sf::RenderWindow &fenetre) {
+namespace TepeGolo
+{
+    bool ImputManager::IsSpriteClicked(sf::Sprite object, sf::Mouse::Button button, sf::RenderWindow &fenetre)
+    {
         if (sf::Mouse::isButtonPressed(button))
         {
             sf::IntRect tempRect(object.getPosition().x, object.getPosition().y, object.getGlobalBounds().width, object.getGlobalBounds().height);
@@ -10,13 +12,13 @@ namespace TepeGolo {
             {
                 return true;
             }
-
         }
-
+        return false;
     }
 
-    sf::Vector2i GetMousePosition(sf::RenderWindow &fenetre) {
+    sf::Vector2i GetMousePosition(sf::RenderWindow &fenetre)
+    {
         return sf::Mouse::getPosition(fenetre);
     }
 
-}
+} // namespace TepeGolo
