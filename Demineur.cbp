@@ -80,6 +80,7 @@
 		<Unit filename="include/EtatMachine.hpp" />
 		<Unit filename="include/GameOverState.hpp" />
 		<Unit filename="include/GameState.hpp" />
+		<Unit filename="include/Grille.hpp" />
 		<Unit filename="include/ImputManager.hpp" />
 		<Unit filename="include/Jeu.hpp" />
 		<Unit filename="include/MainMenuState.hpp" />
@@ -91,6 +92,7 @@
 		<Unit filename="src/EtatMachine.cpp" />
 		<Unit filename="src/GameOverState.cpp" />
 		<Unit filename="src/GameState.cpp" />
+		<Unit filename="src/Grille.cpp" />
 		<Unit filename="src/ImputManager.cpp" />
 		<Unit filename="src/Jeu.cpp" />
 		<Unit filename="src/MainMenuState.cpp" />

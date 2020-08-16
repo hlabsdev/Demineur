@@ -3,11 +3,11 @@
 #define SCREEN_WIDTH 800
 #define SCREEN_HEIGHT 600
 
-#define SPLASH_STATE_SHOW_TIME 2.0
+#define SPLASH_STATE_SHOW_TIME 1.0
 
 #define SPLASH_SCENE_BACKGROUND_FILEPATH "Resources/res/Splash Background.png"
 #define MAIN_MENU_BACKGROUND_FILEPATH "Resources/res/Main Menu Background.png"
-#define GAME_BACKGROUND_FILEPATH "Resources/res/Main Menu Background.png"
+#define GAME_BACKGROUND_FILEPATH "Resources/res/Game Background.png"
 #define PAUSE_BACKGROUND_FILEPATH "Resources/res/Main Menu Background.png"
 
 #define MAIN_MENU_TITLE_FILEPATH "Resources/res/Game Title.png"
@@ -22,16 +22,16 @@
 #define PAUSE_BUTTON "Resources/res/Pause Button.png"
 
 #define GRID_SPRITE_FILEPATH "Resources/res/Grid.png"
-
+//Cases
 #define CASE_VIDE_PATH "Resources/res/Vide.png"
-#define CASE_PATH "Resources/res/Case.png"
-#define CASE_MINEE "Resources/res/Bombe.png"
+#define CASE_DOS_PATH "Resources/res/Case.png"
+#define CASE_MINEE_PATH "Resources/res/Bombe.png"
 #define UN "Resources/res/1.png"
 #define DEUX "Resources/res/2.png"
 #define TROIS "Resources/res/3.png"
 #define QUATRE "Resources/res/4.png"
 #define DRAPEAU "Resources/res/Flag.png"
-
+//Cases
 
 #define CASE 8
 #define MINEE 0

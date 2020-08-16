@@ -1,11 +1,16 @@
 #pragma once
 
+#include <cstdlib>
+#include <ctime>
+#include <iostream>
+
 #include <sstream>
 #include <string>
 #include "GameState.hpp"
 #include "GameOverState.hpp"
 #include "MainMenuState.hpp"
 #include "PauseState.hpp"
+#include "Case.hpp"
 #include "DEFINITIONS.hpp"
 
 #include <iostream>
@@ -22,17 +27,18 @@ namespace TepeGolo
 
 		for(int i=0; i<9; i++){
             for(int j=0; j<9; j++){
+                //_cases[i][j] = new Case(_data);
                 _cases[i][j] = Case();
             }
-
 		}
 
 
 		this->_data->assets.LoadTexture("Button Pause", PAUSE_BUTTON);
 		this->_data->assets.LoadTexture("Grid Sprite", GRID_SPRITE_FILEPATH);
-		this->_data->assets.LoadTexture("Case", CASE_PATH);
-		this->_data->assets.LoadTexture("Case Vide", CASE_VIDE_PATH);
-		this->_data->assets.LoadTexture("Case Minee", CASE_MINEE);
+		this->_data->assets.LoadTexture("Background", GAME_BACKGROUND_FILEPATH);
+		this->_data->assets.LoadTexture("Case Dos", CASE_DOS_PATH);
+		//this->_data->assets.LoadTexture("Case Vide", CASE_VIDE_PATH);
+		//this->_data->assets.LoadTexture("Case Minee", CASE_MINEE_PATH);
 		this->_data->assets.LoadFont("Arial", FONT_ONE);
 
         _chrono.setFont(this->_data->assets.GetFont("Arial"));
@@ -80,7 +86,7 @@ namespace TepeGolo
 
 			}
 			else if(this->_data->imput.IsSpriteClicked(this->_gridSprite, sf::Mouse::Left, this->_data->fenetre)){
-                this->Decouvrire();
+                this->ClickGauche();
 			}
 		}
 	}
@@ -97,7 +103,7 @@ namespace TepeGolo
         this->_elapse = _temps.getElapsedTime();
         ostringstream st;
         st << this->_elapse.asMilliseconds();
-//        this->_chrono.setString(this->_elapse.asSeconds());
+        this->_chrono.setString(char(this->_elapse.asSeconds()));
 	}
 
 	void GameState::Dessiner(float dt)
@@ -107,9 +113,9 @@ namespace TepeGolo
 		this->_data->fenetre.draw( this->_background );
 
 		this->_data->fenetre.draw( this->_pauseButton );
-		this->_data->fenetre.draw( this->_gridSprite );
 		this->_data->fenetre.draw( this->_chrono );
 		this->_data->fenetre.draw( this->_drapeauRestants );
+		this->_data->fenetre.draw( this->_gridSprite );
 		for(int x=0; x<9; x++){
             for(int y=0; y<9; y++){
                 //this->_data->fenetre.draw( this->_cases[x][y]() );
@@ -120,23 +126,26 @@ namespace TepeGolo
 		this->_data->fenetre.display();
 	}
 
+
 	void GameState::InitCase()
 	{
-		sf::Vector2u tempSpriteSize = this->_data->assets.GetTexture("Case").getSize();
+		sf::Vector2u tempSpriteSize = this->_data->assets.GetTexture("Case Dos").getSize();
+		this->GenererMine();
 
 		for (int x = 0; x < 9; x++)
 		{
 			for (int y = 0; y < 9; y++)
 			{
-				_cases[x][y]._face.setTexture(this->_data->assets.GetTexture("Case"));
-				_cases[x][y]._face.setPosition(_gridSprite.getPosition().x + (tempSpriteSize.x * x) + 7,
-                            _gridSprite.getPosition().y + (tempSpriteSize.y * y) + 7);
-				_cases[x][y]._face.setColor(sf::Color(255, 255, 255, 255));
+				this->_cases[x][y].placerCase(_gridSprite.getPosition().x + (tempSpriteSize.x * x) + 7, _gridSprite.getPosition().y + (tempSpriteSize.y * y) + 7);
+
+				/*_cases[x][y]._face.setPosition(_gridSprite.getPosition().x + (tempSpriteSize.x * x) + 7,
+                            _gridSprite.getPosition().y + (tempSpriteSize.y * y) + 7);*/
+				//_cases[x][y]._face.setColor(sf::Color(255, 255, 255, 255));
 			}
 		}
 	}
 
-	void GameState::Decouvrire(){
+	void GameState::ClickGauche(){
 	    sf::Vector2i posClick = this->_data->imput.GetMousePosition(this->_data->fenetre);
 	    sf::FloatRect tailleGrille = _gridSprite.getGlobalBounds();
 	    sf::Vector2f espace = sf::Vector2f((SCREEN_WIDTH - tailleGrille.width)/2, (SCREEN_HEIGHT-tailleGrille.height)/2);
@@ -203,18 +212,22 @@ namespace TepeGolo
             ligne =9;
 	    }
 
-	    if (gridArray[colonne-1][ligne-1] = CASE){
-            gridArray[colonne-1][ligne-1] = turn;
-            if(CASE == turn){
-                _cases[colonne-1][ligne-1]._face.setTexture(this->_data->assets.GetTexture("Case Minee"));
-                turn = MINEE;
-            }
-            else if(MINEE == turn){
-                _cases[colonne-1][ligne-1]._face.setTexture(this->_data->assets.GetTexture("Case Vide"));
-                turn = CASE;
-            }
+	    this->_cases[colonne-1][ligne-1].decouvrir();
+	}
 
-            _cases[colonne-1][ligne-1]._face.setColor(sf::Color(255,255,255,255));
-	    }
+	void GameState::ClickDroit(){}
+
+	void GameState::GenererMine(){
+        srand(time(NULL));
+        int mineRestantAPlacer = 10;
+
+        while (mineRestantAPlacer > 0) {
+            int x(rand() % 9);
+            int y(rand() % 9);
+
+            this->_cases[x][y].placerMine();
+            if (this->_cases[x][y]._estMinee)
+                mineRestantAPlacer--;
+        }
 	}
 }

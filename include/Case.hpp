@@ -4,7 +4,6 @@
 #include <string>
 #include "Jeu.hpp"
 #include <SFML/Graphics.hpp>
-
 namespace TepeGolo {
     class Case
     {
@@ -12,19 +11,25 @@ namespace TepeGolo {
             Case();
 
             void afficher(sf::RenderWindow& fenetre);
-            void tourner();
+            void init(std::string nom, std::string fic);
+            void decouvrir();
 
-            void setPosition(float x, float y);
-
-            GameDataRef _data;
+            void setPlace(float x, float y);
+            float getPlace();
+            void placerMine();
+            void placerCase(float x, float y);
+            void Marquer();
             int nombreCaseMineVoisine;
+
+//        private:
+            GameDataRef _data;
             float _x;
             float _y;
-            bool estMarque;
-            bool estMinee;
-
+            bool _estMarque;
+            bool _estMinee;
+            bool _estDecouvers;
             sf::Sprite _face;
-            bool _estDeFace;
+
 
     };
 }

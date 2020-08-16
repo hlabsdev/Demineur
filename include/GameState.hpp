@@ -1,5 +1,9 @@
 #pragma once
 
+#include <cstdlib>
+#include <ctime>
+#include <iostream>
+
 #include <SFML/Graphics.hpp>
 #include "Etat.hpp"
 #include "Jeu.hpp"
@@ -17,11 +21,14 @@ namespace TepeGolo
 		void GererEntrer();
 		void Update(float dt);
 		void Dessiner(float dt);
+		void InitCase();
 
 	private:
-	    void InitCase();
-	    void Decouvrire();
-
+	    void ClickGauche();
+	    void ClickDroit();
+	    void GenererMine();
+	    void LancerJeu();
+	    void VerifierGagner();
 		GameDataRef _data;
 
 		sf::Sprite _background;
