@@ -1,6 +1,7 @@
 #pragma once
 
 #include <sstream>
+#include <string>
 #include "GameState.hpp"
 #include "GameOverState.hpp"
 #include "MainMenuState.hpp"
@@ -8,6 +9,8 @@
 #include "DEFINITIONS.hpp"
 
 #include <iostream>
+
+using namespace std;
 
 namespace TepeGolo
 {
@@ -19,20 +22,34 @@ namespace TepeGolo
 
 		this->_data->assets.LoadTexture("Button Pause", PAUSE_BUTTON);
 		this->_data->assets.LoadTexture("Grid Sprite", GRID_SPRITE_FILEPATH);
+		this->_data->assets.LoadTexture("Case", CASE_PATH);
 		this->_data->assets.LoadTexture("Case Vide", CASE_VIDE_PATH);
-		this->_data->assets.LoadTexture("Case Minee", CASE_MINEE_PATH);
+		this->_data->assets.LoadTexture("Case Minee", CASE_MINEE);
+		this->_data->assets.LoadFont("Arial", FONT_ONE);
+
+        _chrono.setFont(this->_data->assets.GetFont("Arial"));
+        _chrono.setString("000");
+        _drapeauRestants.setString("00");
+
+        _temps.restart();
+
+        _drapeauRestants.setStyle(24);
 
 		_background.setTexture(this->_data->assets.GetTexture("Background"));
 		_pauseButton.setTexture(this->_data->assets.GetTexture("Button Pause"));
 		_gridSprite.setTexture(this->_data->assets.GetTexture("Grid Sprite"));
 
-		_pauseButton.setPosition( this->_data->fenetre.getSize( ).x - _pauseButton.getLocalBounds( ).width, _pauseButton.getPosition( ).y );
+		_pauseButton.setPosition( this->_data->fenetre.getSize( ).x - _pauseButton.getLocalBounds( ).height, _pauseButton.getPosition( ).y );
+		//_chrono.setPosition( this->_data->fenetre.getSize( ).x - _pauseButton.getGlobalBounds( ).height, _chrono.getPosition( ).y );
+		//_drapeauRestants.setPosition( this->_data->fenetre.getSize( ).x, _drapeauRestants.getPosition( ).y );
+		//_pauseButton.setPosition( this->_data->fenetre.getSize( ).x, _pauseButton.getPosition( ).y );
+
 		_gridSprite.setPosition( (SCREEN_WIDTH/2)- (_gridSprite.getGlobalBounds().width/2), (SCREEN_HEIGHT/2)- (_gridSprite.getGlobalBounds().height/2) );
 
 		InitCase();
 		for(int x=0; x<9; x++){
             for(int y=0; y<9; y++){
-                gridArray[x][y]=EMPTY_PIECE;
+                gridArray[x][y]=VIDE;
             }
 		}
 	}
@@ -51,9 +68,8 @@ namespace TepeGolo
 			if (this->_data->imput.IsSpriteClicked(this->_pauseButton, sf::Mouse::Left, this->_data->fenetre))
 			{
 				// PAUSE
-				this->_data->machine.AjoutEtat(EtatRef(new PauseState(_data)), true);
-				//this->_data->machine.AjoutEtat(EtatRef(new GameOverState(_data)), true);
-				//std::cout << "Pause The Game" << std::endl;
+				this->_data->machine.AjoutEtat(EtatRef(new PauseState(_data, *this)));
+
 			}
 			else if(this->_data->imput.IsSpriteClicked(this->_gridSprite, sf::Mouse::Left, this->_data->fenetre)){
                 this->Decouvrire();
@@ -63,7 +79,17 @@ namespace TepeGolo
 
 	void GameState::Update(float dt)
 	{
+        if(STATE_DRAW == gameState || STATE_LOSE == gameState || STATE_WON == gameState){
+            if(this->_temps.getElapsedTime().asSeconds() > TEMPS_AVANT_GAME_OVER){
+                this->_data->machine.AjoutEtat(EtatRef(new GameOverState(_data)), true);
+            }
+        }
 
+        //this->_drapeauRestants.
+        this->_elapse = _temps.getElapsedTime();
+        ostringstream st;
+        st << this->_elapse.asMilliseconds();
+        this->_chrono.setString(this->_elapse.asSeconds());
 	}
 
 	void GameState::Dessiner(float dt)
@@ -74,6 +100,8 @@ namespace TepeGolo
 
 		this->_data->fenetre.draw( this->_pauseButton );
 		this->_data->fenetre.draw( this->_gridSprite );
+		this->_data->fenetre.draw( this->_chrono );
+		this->_data->fenetre.draw( this->_drapeauRestants );
 		for(int x=0; x<9; x++){
             for(int y=0; y<9; y++){
                 this->_data->fenetre.draw( this->_cases[x][y] );
@@ -85,16 +113,16 @@ namespace TepeGolo
 
 	void GameState::InitCase()
 	{
-		sf::Vector2u tempSpriteSize = this->_data->assets.GetTexture("Case Vide").getSize();
+		sf::Vector2u tempSpriteSize = this->_data->assets.GetTexture("Case").getSize();
 
 		for (int x = 0; x < 9; x++)
 		{
 			for (int y = 0; y < 9; y++)
 			{
-				_cases[x][y].setTexture(this->_data->assets.GetTexture("Case Vide"));
+				_cases[x][y].setTexture(this->_data->assets.GetTexture("Case"));
 				_cases[x][y].setPosition(_gridSprite.getPosition().x + (tempSpriteSize.x * x) + 7,
                             _gridSprite.getPosition().y + (tempSpriteSize.y * y) + 7);
-				_cases[x][y].setColor(sf::Color(0, 255, 255, 255));
+				_cases[x][y].setColor(sf::Color(255, 255, 255, 255));
 			}
 		}
 	}
@@ -166,13 +194,13 @@ namespace TepeGolo
             ligne =9;
 	    }
 
-	    if (gridArray[colonne-1][ligne-1] = CASE_VIDE){
+	    if (gridArray[colonne-1][ligne-1] = CASE){
             gridArray[colonne-1][ligne-1] = turn;
             if(CASE == turn){
                 _cases[colonne-1][ligne-1].setTexture(this->_data->assets.GetTexture("Case Minee"));
-                turn = AI_PIECE;
+                turn = MINEE;
             }
-            else if(AI_PIECE == turn){
+            else if(MINEE == turn){
                 _cases[colonne-1][ligne-1].setTexture(this->_data->assets.GetTexture("Case Vide"));
                 turn = CASE;
             }
@@ -180,5 +208,4 @@ namespace TepeGolo
             _cases[colonne-1][ligne-1].setColor(sf::Color(255,255,255,255));
 	    }
 	}
-
 }

@@ -2,7 +2,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "Etat.hpp"
-#include "Game.hpp"
+#include "Jeu.hpp"
 
 namespace TepeGolo
 {

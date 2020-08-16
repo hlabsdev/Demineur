@@ -2,14 +2,15 @@
 
 #include <SFML/Graphics.hpp>
 #include "Etat.hpp"
-#include "Game.hpp"
+#include "Jeu.hpp"
+#include "GameState.hpp"
 
 namespace TepeGolo
 {
 	class PauseState : public Etat
 	{
 	public:
-		PauseState(GameDataRef data);
+		PauseState(GameDataRef data, GameState jeuEnCours);
 
 		void Init();
 
@@ -19,6 +20,7 @@ namespace TepeGolo
 
 	private:
 		GameDataRef _data;
+		GameState* _jeuEnCours;
 
 		sf::Sprite _background;
 

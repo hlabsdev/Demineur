@@ -2,7 +2,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "Etat.hpp"
-#include "Game.hpp"
+#include "Jeu.hpp"
 
 namespace TepeGolo
 {
@@ -31,5 +31,9 @@ namespace TepeGolo
         int gridArray[9][9];
 		int turn;
 		int gameState;
+		sf::Clock _temps;
+		sf::Time _elapse;
+		sf::Text _chrono;
+		sf::Text _drapeauRestants;
 	};
 }// namespace TepeGolo

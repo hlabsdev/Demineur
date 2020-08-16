@@ -2,7 +2,7 @@
 
 #include "DEFINITIONS.hpp"
 #include <string>
-#include "Game.hpp"
+#include "Jeu.hpp"
 #include <SFML/Graphics.hpp>
 
 namespace TepeGolo {
@@ -17,13 +17,13 @@ namespace TepeGolo {
 
             void setPosition(float x, float y);
 
-        protected:
-
         private:
             GameDataRef _data;
             int nombreCaseMineVoisine;
             float _x;
             float _y;
+            bool estMarque;
+            bool estMinee;
 
             sf::Sprite _face;
             bool _estDeFace;

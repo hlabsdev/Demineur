@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Etat.hpp"
-#include "Game.hpp"
+#include "Jeu.hpp"
 #include <SFML/Graphics.hpp>
 
 namespace TepeGolo
