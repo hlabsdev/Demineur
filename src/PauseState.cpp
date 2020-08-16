@@ -40,20 +40,20 @@ namespace TepeGolo
 				this->_data->fenetre.close();
 			}
 
-			if (this->_data->input.IsSpriteClicked(this->_resumeButton, sf::Mouse::Left, this->_data->fenetre))
+			if (this->_data->imput.IsSpriteClicked(this->_resumeButton, sf::Mouse::Left, this->_data->fenetre))
 			{
-				// Resume Game By Popping Of The Current State (Pause State)
-				this->_data->machine.RemoveState();
+				// Peprise du jeu
+				this->_data->machine.RetireEtat();
 
 			}
 
-			if (this->_data->input.IsSpriteClicked(this->_homeButton, sf::Mouse::Left, this->_data->fenetre))
+			if (this->_data->imput.IsSpriteClicked(this->_homeButton, sf::Mouse::Left, this->_data->fenetre))
 			{
-				// Remove The Pause State Off The Stack
-				this->_data->machine.RemoveState();
+				// enleve la vue Pause de la memoire
+				this->_data->machine.RetireEtat();
 
-				// Switch To Main Menu State By Replacing The Game State
-				this->_data->machine.AddState(StateRef(new MainMenuState(_data)), true);
+				// Vas au menu principale
+				this->_data->machine.AjoutEtat(EtatRef(new MainMenuState(_data)), true);
 
 			}
 		}

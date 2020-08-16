@@ -16,7 +16,7 @@ namespace TepeGolo
         return false;
     }
 
-    sf::Vector2i GetMousePosition(sf::RenderWindow &fenetre)
+    sf::Vector2i ImputManager::GetMousePosition(sf::RenderWindow& fenetre)
     {
         return sf::Mouse::getPosition(fenetre);
     }

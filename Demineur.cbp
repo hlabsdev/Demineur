@@ -9,7 +9,8 @@
 			<Target title="Debug">
 				<Option output="bin/Debug/Demineur" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Debug/" />
-				<Option type="1" />
+				<Option external_deps="bin/Release/libgcc_s_dw2-1.dll;" />
+				<Option type="0" />
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
@@ -24,7 +25,7 @@
 			<Target title="Release">
 				<Option output="bin/Release/Demineur" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Release/" />
-				<Option type="1" />
+				<Option type="0" />
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-O2" />
@@ -40,30 +41,47 @@
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
+			<Add option="-std=c++17" />
 			<Add option="-fexceptions" />
 			<Add directory="C:/Program Files/CodeBlocks/MinGW/SFML-2.5.1/include" />
 		</Compiler>
+		<ResourceCompiler>
+			<Add directory="C:/Program Files/CodeBlocks/MinGW/SFML-2.5.1/include" />
+		</ResourceCompiler>
 		<Linker>
 			<Add directory="C:/Program Files/CodeBlocks/MinGW/SFML-2.5.1/lib" />
 		</Linker>
 		<Unit filename="include/AssetManager.hpp" />
+		<Unit filename="include/Case.hpp" />
 		<Unit filename="include/DEFINITIONS.hpp" />
 		<Unit filename="include/Etat.hpp" />
 		<Unit filename="include/EtatMachine.hpp" />
 		<Unit filename="include/Game.hpp" />
+		<Unit filename="include/GameOverState.hpp" />
 		<Unit filename="include/GameState.hpp" />
 		<Unit filename="include/ImputManager.hpp" />
 		<Unit filename="include/MainMenuState.hpp" />
+		<Unit filename="include/PauseState.hpp" />
 		<Unit filename="include/SplashState.hpp" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/AssetManager.cpp" />
+		<Unit filename="src/Case.cpp" />
 		<Unit filename="src/EtatMachine.cpp" />
 		<Unit filename="src/Game.cpp" />
+		<Unit filename="src/GameOverState.cpp" />
 		<Unit filename="src/GameState.cpp" />
 		<Unit filename="src/ImputManager.cpp" />
 		<Unit filename="src/MainMenuState.cpp" />
+		<Unit filename="src/PauseState.cpp" />
 		<Unit filename="src/SplashState.cpp" />
+		<Unit filename="version.h" />
 		<Extensions>
+			<AutoVersioning>
+				<Scheme minor_max="10" build_max="0" rev_max="0" rev_rand_max="10" build_times_to_increment_minor="100" />
+				<Settings autoincrement="1" date_declarations="1" use_define="0" update_manifest="0" do_auto_increment="1" ask_to_increment="0" language="C++" svn="0" svn_directory="" header_path="version.h" />
+				<Changes_Log show_changes_editor="0" app_title="released version %M.%m.%b of %p" changeslog_path="ChangesLog.txt" />
+				<Code header_guard="VERSION_H" namespace="AutoVersion" prefix="" />
+			</AutoVersioning>
 			<lib_finder disable_auto="1" />
 		</Extensions>
 	</Project>

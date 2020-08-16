@@ -43,22 +43,26 @@ namespace TepeGolo {
 
 #define MAIN_MENU_PLAY_BUTTON "Resources/res/Play Button.png"
 #define RESUME_BUTTON "Resources/res/Resume Button.png"
+#define RETRY_BUTTON "Resources/res/Retry Button.png"
 #define HOME_BUTTON "Resources/res/Home Button.png"
 
 #define MAIN_MENU_PLAY_BUTTON_OUTER "Resources/res/Play Button Outer.png"
 
 #define PAUSE_BUTTON "Resources/res/Pause Button.png"
 
-#define X_PIECE_FILEPATH "Resources/res/X.png"
-#define O_PIECE_FILEPATH "Resources/res/O.png"
+#define CASE_VIDE_PATH "Resources/res/Case Vide.png"
+#define CASE_MINEE_PATH "Resources/res/Bombe.png"
 #define X_WINNING_PIECE_FILEPATH "Resources/res/X Win.png"
 #define O_WINNING_PIECE_FILEPATH "Resources/res/O Win.png"
 
-#define X_PIECE 8
-#define O_PIECE 0
+#define GRID_SPRITE_FILEPATH "Resources/res/Grid.png"
+
+
+#define CASE_VIDE 8
+#define CASE_MINEE 0
 #define EMPTY_PIECE -1
-#define PLAYER_PIECE X_PIECE
-#define AI_PIECE O_PIECE
+#define CASE CASE_VIDE
+#define AI_PIECE CASE_MINEE
 
 #define STATE_PLAYING 98
 #define STATE_PAUSED 97
