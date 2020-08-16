@@ -1,9 +1,10 @@
 #include "Case.hpp"
 
 namespace TepeGolo{
-    Case::Case(GameDataRef data): _data(data){
-        this->_data->assets.LoadTexture("Case Vide", CASE_VIDE_PATH);
-        this->_face.setTexture(this->_data->assets.GetTexture("Case Vide"));
+    //Case::Case(GameDataRef data): _data(data){
+    Case::Case(){
+        //this->_data->assets.LoadTexture("Case Vide", CASE_VIDE_PATH);
+        //this->_face.setTexture(this->_data->assets.GetTexture("Case Vide"));
     }
 
     void Case::afficher(sf::RenderWindow& fenetre){

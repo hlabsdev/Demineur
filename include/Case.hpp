@@ -9,15 +9,13 @@ namespace TepeGolo {
     class Case
     {
         public:
-            Case(GameDataRef data);
-            ~Case(){};
+            Case();
 
             void afficher(sf::RenderWindow& fenetre);
             void tourner();
 
             void setPosition(float x, float y);
 
-        private:
             GameDataRef _data;
             int nombreCaseMineVoisine;
             float _x;

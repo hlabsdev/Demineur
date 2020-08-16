@@ -3,6 +3,7 @@
 #include <SFML/Graphics.hpp>
 #include "Etat.hpp"
 #include "Jeu.hpp"
+#include "Case.hpp"
 
 namespace TepeGolo
 {
@@ -26,7 +27,8 @@ namespace TepeGolo
 		sf::Sprite _background;
 		sf::Sprite _pauseButton;
 		sf::Sprite _gridSprite;
-		sf::Sprite _cases[9][9];
+		//sf::Sprite _cases[9][9];
+		Case _cases[9][9];
 
         int gridArray[9][9];
 		int turn;

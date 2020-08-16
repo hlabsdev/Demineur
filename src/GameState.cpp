@@ -20,6 +20,14 @@ namespace TepeGolo
 		gameState = STATE_PLAYING;
 		turn = CASE;
 
+		for(int i=0; i<9; i++){
+            for(int j=0; j<9; j++){
+                _cases[i][j] = Case();
+            }
+
+		}
+
+
 		this->_data->assets.LoadTexture("Button Pause", PAUSE_BUTTON);
 		this->_data->assets.LoadTexture("Grid Sprite", GRID_SPRITE_FILEPATH);
 		this->_data->assets.LoadTexture("Case", CASE_PATH);
@@ -89,7 +97,7 @@ namespace TepeGolo
         this->_elapse = _temps.getElapsedTime();
         ostringstream st;
         st << this->_elapse.asMilliseconds();
-        this->_chrono.setString(this->_elapse.asSeconds());
+//        this->_chrono.setString(this->_elapse.asSeconds());
 	}
 
 	void GameState::Dessiner(float dt)
@@ -104,7 +112,8 @@ namespace TepeGolo
 		this->_data->fenetre.draw( this->_drapeauRestants );
 		for(int x=0; x<9; x++){
             for(int y=0; y<9; y++){
-                this->_data->fenetre.draw( this->_cases[x][y] );
+                //this->_data->fenetre.draw( this->_cases[x][y]() );
+                this->_cases[x][y].afficher(this->_data->fenetre);
             }
 		}
 
@@ -119,10 +128,10 @@ namespace TepeGolo
 		{
 			for (int y = 0; y < 9; y++)
 			{
-				_cases[x][y].setTexture(this->_data->assets.GetTexture("Case"));
-				_cases[x][y].setPosition(_gridSprite.getPosition().x + (tempSpriteSize.x * x) + 7,
+				_cases[x][y]._face.setTexture(this->_data->assets.GetTexture("Case"));
+				_cases[x][y]._face.setPosition(_gridSprite.getPosition().x + (tempSpriteSize.x * x) + 7,
                             _gridSprite.getPosition().y + (tempSpriteSize.y * y) + 7);
-				_cases[x][y].setColor(sf::Color(255, 255, 255, 255));
+				_cases[x][y]._face.setColor(sf::Color(255, 255, 255, 255));
 			}
 		}
 	}
@@ -197,15 +206,15 @@ namespace TepeGolo
 	    if (gridArray[colonne-1][ligne-1] = CASE){
             gridArray[colonne-1][ligne-1] = turn;
             if(CASE == turn){
-                _cases[colonne-1][ligne-1].setTexture(this->_data->assets.GetTexture("Case Minee"));
+                _cases[colonne-1][ligne-1]._face.setTexture(this->_data->assets.GetTexture("Case Minee"));
                 turn = MINEE;
             }
             else if(MINEE == turn){
-                _cases[colonne-1][ligne-1].setTexture(this->_data->assets.GetTexture("Case Vide"));
+                _cases[colonne-1][ligne-1]._face.setTexture(this->_data->assets.GetTexture("Case Vide"));
                 turn = CASE;
             }
 
-            _cases[colonne-1][ligne-1].setColor(sf::Color(255,255,255,255));
+            _cases[colonne-1][ligne-1]._face.setColor(sf::Color(255,255,255,255));
 	    }
 	}
 }
