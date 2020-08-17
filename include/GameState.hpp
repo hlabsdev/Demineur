@@ -38,7 +38,8 @@ namespace TepeGolo
 		Case _cases[9][9];
 
         int gridArray[9][9];
-		int turn;
+		bool firstClick = false;
+		int nbMine = 10;
 		int gameState;
 		sf::Clock _temps;
 		sf::Time _elapse;

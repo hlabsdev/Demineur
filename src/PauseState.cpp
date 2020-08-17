@@ -44,7 +44,9 @@ namespace TepeGolo
 			{
 				// Peprise du jeu
 				//this->_data->machine.AjoutEtat(EtatRef(new GameState(_data)), true);
-				this->_data->machine.AjoutEtat(EtatRef(this->_jeuEnCours), true);
+				//this->_data->machine.AjoutEtat(EtatRef(this->_jeuEnCours));
+				//this->_data->machine.ProcessEtatChange();
+				//this->_jeuEnCours->_data->machine.ProcessEtatChange();
 
 			}
 

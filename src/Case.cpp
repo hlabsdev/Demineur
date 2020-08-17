@@ -1,21 +1,19 @@
 #include "Case.hpp"
+using namespace std;
 
 namespace TepeGolo{
-    //Case::Case(GameDataRef data): _data(data){
 
     Case::Case(){
-        this->_data->assets.LoadTexture("Case Dos", CASE_DOS_PATH);
-        this->_data->assets.LoadTexture("Case Vide", CASE_VIDE_PATH);
-        this->_data->assets.LoadTexture("Mine1", UN);
-        this->_data->assets.LoadTexture("Mine2", DEUX);
-        this->_data->assets.LoadTexture("Mine3", TROIS);
-        this->_data->assets.LoadTexture("Mine4", QUATRE);
-        this->_data->assets.LoadTexture("Case Minee", CASE_MINEE_PATH);
-        this->_data->assets.LoadTexture("Case Marquee", DRAPEAU);
+        _data->assets.LoadTexture("CaseDos", CASE_DOS_PATH);
+        _data->assets.LoadTexture("CaseVide", CASE_VIDE_PATH);
+        _data->assets.LoadTexture("Mine1", UN);
+        _data->assets.LoadTexture("Mine2", DEUX);
+        _data->assets.LoadTexture("Mine3", TROIS);
+        _data->assets.LoadTexture("Mine4", QUATRE);
+        _data->assets.LoadTexture("CaseMinee", CASE_MINEE_PATH);
+        _data->assets.LoadTexture("CaseMarquee", DRAPEAU);
 
-        _estDecouvers = _estMarque = _estMinee = false;
-
-        _face.setTexture(this->_data->assets.GetTexture("Case Dos"));
+        _face.setTexture(this->_data->assets.GetTexture("CaseDos"));
         _face.setColor(sf::Color(255,255,255,255));
         nombreCaseMineVoisine = 0;
     }
@@ -27,16 +25,16 @@ namespace TepeGolo{
     void Case::decouvrir(){
         if(this->_estDecouvers == false){
             if(this->_estMinee == true){
-                this->_face.setTexture(this->_data->assets.GetTexture("Case Minee"));
+                _face.setTexture(this->_data->assets.GetTexture("CaseMinee"));
             }
             else if(this->nombreCaseMineVoisine == 0){
-                this->_face.setTexture(this->_data->assets.GetTexture("Case Vide"));
+                _face.setTexture(this->_data->assets.GetTexture("CaseVide"));
             }
-            /*else if(this->nombreCaseMineVoisine > 0){
-                string nbrMine = "Mine" + string(nombreCaseMineVoisine);
+            else if(this->nombreCaseMineVoisine > 0){
+                string nbrMine = "Mine" + to_string(nombreCaseMineVoisine);
                 this->_face.setTexture(this->_data->assets.GetTexture(nbrMine));
                 _estMarque = true;
-            }*/
+            }
             _face.setColor(sf::Color(255,255,255,255));
             _estDecouvers = true;
         }
@@ -52,25 +50,27 @@ namespace TepeGolo{
     }
 
     void Case::placerMine(){
-        this->_face.setTexture(this->_data->assets.GetTexture("Case Minee"));
         _estMinee = true;
     }
 
     void Case::placerCase(float x, float y){
-        this->_face.setPosition(x, y);
-        this->setPlace(x,y);
+        _face.setPosition(x, y);
+        setPlace(x,y);
     }
 
     void Case::Marquer(){
         if(this->_estMarque == true){
-            this->_face.setTexture(this->_data->assets.GetTexture("Case Dos"));
+            _face.setTexture(this->_data->assets.GetTexture("CaseDos"));
             _estMarque = false;
         }
         else{
-            this->_face.setTexture(this->_data->assets.GetTexture("Case Marquee"));
+            _face.setTexture(this->_data->assets.GetTexture("CaseMarquee"));
             _estMarque = true;
         }
+    }
 
+    void Case::ajoutVoisin(){
+        this->nombreCaseMineVoisine +=1;
     }
 
 
