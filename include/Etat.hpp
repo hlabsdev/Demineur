@@ -1,5 +1,4 @@
 #pragma once
-
 namespace TepeGolo
 {
     class Etat {

@@ -1,8 +1,7 @@
 #pragma once
-
 #include "DEFINITIONS.hpp"
 #include <string>
-#include "Jeu.hpp"
+#include "Partie.hpp"
 #include <SFML/Graphics.hpp>
 namespace TepeGolo {
     class Case

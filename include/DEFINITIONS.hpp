@@ -14,6 +14,7 @@
 
 #define DEBUTANT_BUTTON "Resources/res/Debutant.png"
 #define INTERMEDIAIRE_PLAY_BUTTON "Resources/res/Intermediaire.png"
+#define MENU_BACKGROUND "Resources/res/Menu.png"
 #define DIFFICILE_BUTTON "Resources/res/Difficile.png"
 #define RESUME_BUTTON "Resources/res/Resume Button.png"
 #define RETRY_BUTTON "Resources/res/Retry Button.png"
@@ -43,10 +44,8 @@
 #define STATE_PAUSED 97
 #define STATE_WON 96
 #define STATE_LOSE 95
-#define STATE_PLACING_PIECE 94
-#define STATE_AI_PLAYING 93
 #define STATE_DRAW 92
 
 #define FONT_ONE "Resources/fonts/arial.ttf"
 
-#define TEMPS_AVANT_GAME_OVER 3
+#define TEMPS_AVANT_GAME_OVER 3.0

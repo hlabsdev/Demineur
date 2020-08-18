@@ -1,8 +1,7 @@
 #pragma once
-
 #include <SFML/Graphics.hpp>
 #include "Etat.hpp"
-#include "Jeu.hpp"
+#include "Partie.hpp"
 
 
 namespace TepeGolo{
@@ -19,6 +18,7 @@ namespace TepeGolo{
     private:
         GameDataRef _data;
         sf::Sprite _background;
+        sf::Sprite _menu;
         sf::Sprite _debutant;
         sf::Sprite _intermediaire;
         sf::Sprite _difficile;

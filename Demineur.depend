@@ -1,13 +1,26 @@
 # depslib dependency file v1.0
-1597588842 source:d:\clients\demineur\main.cpp
+1597776134 source:d:\clients\demineur\main.cpp
 	<iostream>
-	"Jeu.hpp"
+	"Partie.hpp"
 	"DEFINITIONS.hpp"
 
-1597616766 source:d:\clients\demineur\src\case.cpp
-	"Case.hpp"
+1597770766 d:\clients\demineur\include\partie.hpp
+	<memory>
+	<string>
+	"EtatMachine.hpp"
+	"AssetManager.hpp"
+	"ImputManager.hpp"
+	<SFML/Graphics.hpp>
 
-1597163026 d:\clients\demineur\include\case.h
+1597769983 d:\clients\demineur\include\etatmachine.hpp
+	<memory>
+	<stack>
+	"Etat.hpp"
+
+1597769929 d:\clients\demineur\include\etat.hpp
+
+1597769983 d:\clients\demineur\include\assetmanager.hpp
+	<map>
 	<SFML/Graphics.hpp>
 
 1525819220 c:\program files\codeblocks\mingw\sfml-2.5.1\include\sfml\graphics.hpp
@@ -419,39 +432,88 @@
 	<SFML/Graphics/Drawable.hpp>
 	<SFML/Window/GlResource.hpp>
 
-1597441903 source:d:\clients\demineur\src\etatmachine.cpp
-	"EtatMachine.hpp"
+1597769983 d:\clients\demineur\include\imputmanager.hpp
+	<SFML/Graphics.hpp>
 
-1597170996 d:\clients\demineur\include\etatmachine.h
-	<memory>
-	<stack>
-	"Etat.hpp"
-
-1597175278 d:\clients\demineur\include\etat.hpp
+1597771684 d:\clients\demineur\include\definitions.hpp
 
 1597441897 source:d:\clients\demineur\src\assetmanager.cpp
 	"AssetManager.hpp"
 	<SFML/Graphics.hpp>
 
-1597435674 d:\clients\demineur\include\assetmanager.h
-	<map>
+1597771895 source:d:\clients\demineur\src\case.cpp
+	"Case.hpp"
+
+1597770895 d:\clients\demineur\include\case.hpp
+	"DEFINITIONS.hpp"
+	<string>
+	"Partie.hpp"
 	<SFML/Graphics.hpp>
+
+1597441903 source:d:\clients\demineur\src\etatmachine.cpp
+	"EtatMachine.hpp"
 
 1597542718 source:d:\clients\demineur\src\imputmanager.cpp
 	"ImputManager.hpp"
 
-1597176581 d:\clients\demineur\include\imputmanager.h
+1597769282 source:d:\clients\demineur\src\gameoverstate.cpp
+	<sstream>
+	"GameOverState.hpp"
+	"DEFINITIONS.hpp"
+	"Grille.hpp"
+	"MainMenuState.hpp"
+	<iostream>
+
+1597769983 d:\clients\demineur\include\gameoverstate.hpp
+	<SFML/Graphics.hpp>
+	"Etat.hpp"
+	"Partie.hpp"
+
+1597770545 d:\clients\demineur\include\grille.hpp
+	<cstdlib>
+	<ctime>
+	<iostream>
+	<SFML/Graphics.hpp>
+	"Etat.hpp"
+	"Partie.hpp"
+	"Case.hpp"
+
+1597769983 d:\clients\demineur\include\mainmenustate.hpp
+	<SFML/Graphics.hpp>
+	"Etat.hpp"
+	"Partie.hpp"
+
+1597769282 source:d:\clients\demineur\src\mainmenustate.cpp
+	<sstream>
+	"MainMenuState.hpp"
+	"Grille.hpp"
+	"DEFINITIONS.hpp"
+	<iostream>
+
+1597769455 source:d:\clients\demineur\src\partie.cpp
+	"Partie.hpp"
+	"SplashState.hpp"
+	"MainMenuState.hpp"
+	"Grille.hpp"
+
+1597769982 d:\clients\demineur\include\splashstate.hpp
+	"Etat.hpp"
+	"Partie.hpp"
 	<SFML/Graphics.hpp>
 
-1597546945 d:\clients\demineur\include\game.hpp
-	<memory>
-	<string>
-	"EtatMachine.hpp"
-	"AssetManager.hpp"
-	"ImputManager.hpp"
-	<SFML/Graphics.hpp>
+1597767136 source:d:\clients\demineur\src\pausestate.cpp
+	<sstream>
+	"PauseState.hpp"
+	"DEFINITIONS.hpp"
+	"Grille.hpp"
+	"MainMenuState.hpp"
+	<iostream>
 
-1597621055 d:\clients\demineur\include\definitions.hpp
+1597769983 d:\clients\demineur\include\pausestate.hpp
+	<SFML/Graphics.hpp>
+	"Etat.hpp"
+	"Partie.hpp"
+	"Grille.hpp"
 
 1597446821 source:d:\clients\demineur\src\splashstate.cpp
 	<sstream>
@@ -460,121 +522,16 @@
 	"DEFINITIONS.hpp"
 	"MainMenuState.hpp"
 
-1597586227 d:\clients\demineur\include\splashstate.hpp
-	"Etat.hpp"
-	"Jeu.hpp"
-	<SFML/Graphics.hpp>
-
-1597546275 source:d:\clients\demineur\src\game.cpp
-	"Game.hpp"
-	"SplashState.hpp"
-	"MainMenuState.hpp"
-
-1597620428 d:\clients\demineur\include\mainmenustate.hpp
-	<SFML/Graphics.hpp>
-	"Etat.hpp"
-	"Jeu.hpp"
-
-1597621246 source:d:\clients\demineur\src\mainmenustate.cpp
-	<sstream>
-	"MainMenuState.hpp"
-	"GameState.hpp"
-	"DEFINITIONS.hpp"
-	<iostream>
-
-1514518636 d:\clients\demineur\include\statemachine.hpp
-	<memory>
-	<stack>
-	"State.hpp"
-
-1514518636 d:\clients\demineur\include\state.hpp
-
-1597441236 d:\clients\demineur\include\assetmanager.hpp
-	<map>
-	<SFML/Graphics.hpp>
-
-1514518636 d:\clients\demineur\include\inputmanager.hpp
-	"SFML\Graphics.hpp"
-
-1597441411 d:\clients\demineur\include\etatmachine.hpp
-	<memory>
-	<stack>
-	"Etat.hpp"
-
-1597440936 d:\clients\demineur\include\imputmanager.hpp
-	<SFML/Graphics.hpp>
-
-1597628462 source:d:\clients\demineur\src\gamestate.cpp
+1597772124 source:d:\clients\demineur\src\grille.cpp
 	<cstdlib>
 	<ctime>
 	<iostream>
 	<sstream>
 	<string>
-	"GameState.hpp"
-	"GameOverState.hpp"
-	"MainMenuState.hpp"
-	"PauseState.hpp"
-	"Case.hpp"
-	"DEFINITIONS.hpp"
-	<iostream>
-
-1597617706 d:\clients\demineur\include\gamestate.hpp
-	<cstdlib>
-	<ctime>
-	<iostream>
-	<SFML/Graphics.hpp>
-	"Etat.hpp"
-	"Jeu.hpp"
-	"Case.hpp"
-
-1597628134 source:d:\clients\demineur\src\pausestate.cpp
-	<sstream>
-	"PauseState.hpp"
-	"DEFINITIONS.hpp"
-	"GameState.hpp"
-	"MainMenuState.hpp"
-	<iostream>
-
-1597586231 d:\clients\demineur\include\pausestate.hpp
-	<SFML/Graphics.hpp>
-	"Etat.hpp"
-	"Jeu.hpp"
-	"GameState.hpp"
-
-1597586148 d:\clients\demineur\include\gameoverstate.hpp
-	<SFML/Graphics.hpp>
-	"Etat.hpp"
-	"Jeu.hpp"
-
-1597449343 source:d:\clients\demineur\src\gameoverstate.cpp
-	<sstream>
-	"GameOverState.hpp"
-	"DEFINITIONS.hpp"
-	"GameState.hpp"
-	"MainMenuState.hpp"
-	<iostream>
-
-1597615542 d:\clients\demineur\include\case.hpp
-	"DEFINITIONS.hpp"
-	<string>
-	"Jeu.hpp"
-	<SFML/Graphics.hpp>
-
-1597586199 d:\clients\demineur\include\jeu.hpp
-	<memory>
-	<string>
-	"EtatMachine.hpp"
-	"AssetManager.hpp"
-	"ImputManager.hpp"
-	<SFML/Graphics.hpp>
-
-1597586049 source:d:\clients\demineur\src\jeu.cpp
-	"Jeu.hpp"
-	"SplashState.hpp"
-	"MainMenuState.hpp"
-
-1597595591 source:d:\clients\demineur\src\grille.cpp
 	"Grille.hpp"
-
-1597595591 d:\clients\demineur\include\grille.hpp
+	"GameOverState.hpp"
+	"MainMenuState.hpp"
+	"PauseState.hpp"
+	"Case.hpp"
+	"DEFINITIONS.hpp"
 

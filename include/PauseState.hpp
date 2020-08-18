@@ -1,16 +1,15 @@
 #pragma once
-
 #include <SFML/Graphics.hpp>
 #include "Etat.hpp"
-#include "Jeu.hpp"
-#include "GameState.hpp"
+#include "Partie.hpp"
+#include "Grille.hpp"
 
 namespace TepeGolo
 {
 	class PauseState : public Etat
 	{
 	public:
-		PauseState(GameDataRef data, GameState jeuEnCours);
+		PauseState(GameDataRef data, Grille jeuEnCours);
 
 		void Init();
 
@@ -20,7 +19,7 @@ namespace TepeGolo
 
 	private:
 		GameDataRef _data;
-		GameState* _jeuEnCours;
+		Grille* _jeuEnCours;
 
 		sf::Sprite _background;
 

@@ -3,14 +3,14 @@
 #include <sstream>
 #include "PauseState.hpp"
 #include "DEFINITIONS.hpp"
-#include "GameState.hpp"
+#include "Grille.hpp"
 #include "MainMenuState.hpp"
 
 #include <iostream>
 
 namespace TepeGolo
 {
-	PauseState::PauseState(GameDataRef data, GameState jeuEnCours){
+	PauseState::PauseState(GameDataRef data, Grille jeuEnCours){
         _data = data;
         _jeuEnCours = &jeuEnCours;
 	}
@@ -43,7 +43,7 @@ namespace TepeGolo
 			if (this->_data->imput.IsSpriteClicked(this->_resumeButton, sf::Mouse::Left, this->_data->fenetre))
 			{
 				// Peprise du jeu
-				//this->_data->machine.AjoutEtat(EtatRef(new GameState(_data)), true);
+				//this->_data->machine.AjoutEtat(EtatRef(new Grille(_data)), true);
 				//this->_data->machine.AjoutEtat(EtatRef(this->_jeuEnCours));
 				//this->_data->machine.ProcessEtatChange();
 				//this->_jeuEnCours->_data->machine.ProcessEtatChange();

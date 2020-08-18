@@ -1,9 +1,7 @@
-#pragma once
-
 #include <sstream>
 #include "GameOverState.hpp"
 #include "DEFINITIONS.hpp"
-#include "GameState.hpp"
+#include "Grille.hpp"
 #include "MainMenuState.hpp"
 
 #include <iostream>
@@ -40,13 +38,13 @@ namespace TepeGolo
 
 			if (this->_data->imput.IsSpriteClicked(this->_retryButton, sf::Mouse::Left, this->_data->fenetre))
 			{
-				// Switch To Main Menu State By Replacing The Game Over State
-				this->_data->machine.AjoutEtat(EtatRef(new GameState(_data)), true);
+				// Aller a la grlle de jeu
+				this->_data->machine.AjoutEtat(EtatRef(new Grille(_data)), true);
 			}
 
 			if (this->_data->imput.IsSpriteClicked(this->_homeButton, sf::Mouse::Left, this->_data->fenetre))
 			{
-				// Switch To Main Menu State By Replacing The Game Over State
+				// Aller au menu principal
 				this->_data->machine.AjoutEtat(EtatRef(new MainMenuState(_data)), true);
 
 			}

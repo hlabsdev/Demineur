@@ -1,8 +1,7 @@
 #pragma once
-
 #include <SFML/Graphics.hpp>
 #include "Etat.hpp"
-#include "Jeu.hpp"
+#include "Partie.hpp"
 
 namespace TepeGolo
 {

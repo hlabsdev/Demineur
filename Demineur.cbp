@@ -79,11 +79,11 @@
 		<Unit filename="include/Etat.hpp" />
 		<Unit filename="include/EtatMachine.hpp" />
 		<Unit filename="include/GameOverState.hpp" />
-		<Unit filename="include/GameState.hpp" />
+		<Unit filename="include/Grille" />
 		<Unit filename="include/Grille.hpp" />
 		<Unit filename="include/ImputManager.hpp" />
-		<Unit filename="include/Jeu.hpp" />
 		<Unit filename="include/MainMenuState.hpp" />
+		<Unit filename="include/Partie.hpp" />
 		<Unit filename="include/PauseState.hpp" />
 		<Unit filename="include/SplashState.hpp" />
 		<Unit filename="main.cpp" />
@@ -91,14 +91,16 @@
 		<Unit filename="src/Case.cpp" />
 		<Unit filename="src/EtatMachine.cpp" />
 		<Unit filename="src/GameOverState.cpp" />
-		<Unit filename="src/GameState.cpp" />
+		<Unit filename="src/Grille">
+			<Option compile="1" />
+			<Option link="1" />
+		</Unit>
 		<Unit filename="src/Grille.cpp" />
 		<Unit filename="src/ImputManager.cpp" />
-		<Unit filename="src/Jeu.cpp" />
 		<Unit filename="src/MainMenuState.cpp" />
+		<Unit filename="src/Partie.cpp" />
 		<Unit filename="src/PauseState.cpp" />
 		<Unit filename="src/SplashState.cpp" />
-		<Unit filename="version.h" />
 		<Extensions>
 			<AutoVersioning>
 				<Scheme minor_max="10" build_max="0" rev_max="0" rev_rand_max="10" build_times_to_increment_minor="100" />

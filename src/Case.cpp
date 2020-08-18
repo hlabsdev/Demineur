@@ -62,9 +62,11 @@ namespace TepeGolo{
         if(this->_estMarque == true){
             _face.setTexture(this->_data->assets.GetTexture("CaseDos"));
             _estMarque = false;
+            _estDecouvers = false;
         }
         else{
             _face.setTexture(this->_data->assets.GetTexture("CaseMarquee"));
+            _estMarque = true;
             _estMarque = true;
         }
     }
@@ -72,6 +74,5 @@ namespace TepeGolo{
     void Case::ajoutVoisin(){
         this->nombreCaseMineVoisine +=1;
     }
-
 
 }

@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="Demineur" />
+		<Option pch_mode="2" />
+		<Option default_target="Release" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/Demineur" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option external_deps="bin/Release/libgcc_s_dw2-1.dll;" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+					<Add directory="include" />
+				</Compiler>
+				<Linker>
+					<Add library="sfml-graphics-d" />
+					<Add library="sfml-window-d" />
+					<Add library="sfml-system-d" />
+					<Add library="sfml-main-d" />
+					<Add directory="lib" />
+					<LinkerExe value="CppCompiler" />
+				</Linker>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/Demineur" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option additional_output="$(#sfml);" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add option="-std=c++17" />
+					<Add directory="include" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+					<Add library="sfml-graphics" />
+					<Add library="sfml-window" />
+					<Add library="sfml-system" />
+					<Add library="sfml-main" />
+					<Add directory="lib" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-std=c++17" />
+			<Add option="-fexceptions" />
+			<Add directory="C:/Program Files/CodeBlocks/MinGW/SFML-2.5.1/include" />
+		</Compiler>
+		<Linker>
+			<Add directory="C:/Program Files/CodeBlocks/MinGW/SFML-2.5.1/lib" />
+		</Linker>
+		<Unit filename="Resources/fonts/Marker Felt.ttf" />
+		<Unit filename="Resources/fonts/arial.ttf" />
+		<Unit filename="Resources/res/1.png" />
+		<Unit filename="Resources/res/2.png" />
+		<Unit filename="Resources/res/3.png" />
+		<Unit filename="Resources/res/4.png" />
+		<Unit filename="Resources/res/Bombe.png" />
+		<Unit filename="Resources/res/Case.png" />
+		<Unit filename="Resources/res/Flag.png" />
+		<Unit filename="Resources/res/Game Title.png" />
+		<Unit filename="Resources/res/Grid.png" />
+		<Unit filename="Resources/res/Home Button.png" />
+		<Unit filename="Resources/res/Main Menu Background.png" />
+		<Unit filename="Resources/res/Pause Background.png" />
+		<Unit filename="Resources/res/Pause Button.png" />
+		<Unit filename="Resources/res/Pause Window.png" />
+		<Unit filename="Resources/res/Play Button.png" />
+		<Unit filename="Resources/res/Resume Button.png" />
+		<Unit filename="Resources/res/Retry Button.png" />
+		<Unit filename="Resources/res/Splash Background.png" />
+		<Unit filename="Resources/res/Victoire.png" />
+		<Unit filename="Resources/res/Vide.png" />
+		<Unit filename="include/AssetManager.hpp" />
+		<Unit filename="include/Case.hpp" />
+		<Unit filename="include/DEFINITIONS.hpp" />
+		<Unit filename="include/Etat.hpp" />
+		<Unit filename="include/EtatMachine.hpp" />
+		<Unit filename="include/GameOverState.hpp" />
+		<Unit filename="include/Grille.hpp" />
+		<Unit filename="include/ImputManager.hpp" />
+		<Unit filename="include/MainMenuState.hpp" />
+		<Unit filename="include/Partie.hpp" />
+		<Unit filename="include/PauseState.hpp" />
+		<Unit filename="include/SplashState.hpp" />
+		<Unit filename="libgcc_s_seh-1.dll" />
+		<Unit filename="libstdc++-6.dll" />
+		<Unit filename="libwinpthread-1.dll" />
+		<Unit filename="main.cpp" />
+		<Unit filename="openal32.dll" />
+		<Unit filename="sfml-audio-2.dll" />
+		<Unit filename="sfml-audio-d-2.dll" />
+		<Unit filename="sfml-graphics-2.dll" />
+		<Unit filename="sfml-graphics-d-2.dll" />
+		<Unit filename="sfml-network-2.dll" />
+		<Unit filename="sfml-network-d-2.dll" />
+		<Unit filename="sfml-system-2.dll" />
+		<Unit filename="sfml-system-d-2.dll" />
+		<Unit filename="sfml-window-2.dll" />
+		<Unit filename="sfml-window-d-2.dll" />
+		<Unit filename="src/AssetManager.cpp" />
+		<Unit filename="src/Case.cpp" />
+		<Unit filename="src/EtatMachine.cpp" />
+		<Unit filename="src/GameOverState.cpp" />
+		<Unit filename="src/Grille.cpp" />
+		<Unit filename="src/ImputManager.cpp" />
+		<Unit filename="src/MainMenuState.cpp" />
+		<Unit filename="src/Partie.cpp" />
+		<Unit filename="src/PauseState.cpp" />
+		<Unit filename="src/SplashState.cpp" />
+		<Extensions>
+			<AutoVersioning>
+				<Scheme minor_max="10" build_max="0" rev_max="0" rev_rand_max="10" build_times_to_increment_minor="100" />
+				<Settings autoincrement="1" date_declarations="1" use_define="0" update_manifest="0" do_auto_increment="1" ask_to_increment="0" language="C++" svn="0" svn_directory="" header_path="version.h" />
+				<Changes_Log show_changes_editor="0" app_title="released version %M.%m.%b of %p" changeslog_path="ChangesLog.txt" />
+				<Code header_guard="VERSION_H" namespace="AutoVersion" prefix="" />
+			</AutoVersioning>
+			<lib_finder disable_auto="1" />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
