@@ -21,7 +21,6 @@ namespace TepeGolo{
 		gameState = STATE_PLAYING;
 		_temps.restart();
 
-		this->_data->assets.LoadTexture("Button Pause", PAUSE_BUTTON);
 		this->_data->assets.LoadTexture("Grid Sprite", GRID_SPRITE_FILEPATH);
 		this->_data->assets.LoadTexture("Game Background", GAME_BACKGROUND_FILEPATH);
 		this->_data->assets.LoadTexture("Case", CASE_DOS_PATH);
@@ -40,24 +39,16 @@ namespace TepeGolo{
         _chrono.setString("000");
 
         _drapeauRestants.setFont(this->_data->assets.GetFont("Arial"));
-        _drapeauRestants.setString("00");
+        _drapeauRestants.setString("00/10");
 
 		_background.setTexture(this->_data->assets.GetTexture("Game Background"));
-		_pauseButton.setTexture(this->_data->assets.GetTexture("Button Pause"));
 		_gridSprite.setTexture(this->_data->assets.GetTexture("Grid Sprite"));
-
-		//_pauseButton.setPosition( this->_data->fenetre.getSize().x - _pauseButton.getLocalBounds().width, _pauseButton.getPosition().y );
 
 		_drapeauRestants.setPosition( 600, _drapeauRestants.getPosition().y);
 		_chrono.setPosition(50, _chrono.getPosition().y );
 		_gridSprite.setPosition( (SCREEN_WIDTH/2)- (_gridSprite.getGlobalBounds().width/2), (SCREEN_HEIGHT/2)- (_gridSprite.getGlobalBounds().height/2) );
 
 		InitCase();
-		for(int x=0; x<9; x++){
-            for(int y=0; y<9; y++){
-                gridArray[x][y]=VIDE;
-            }
-		}
 	}
 
 	void Grille::GererEntrer(){
@@ -70,13 +61,7 @@ namespace TepeGolo{
 				this->_data->fenetre.close();
 			}
 
-			if (this->_data->imput.IsSpriteClicked(this->_pauseButton, sf::Mouse::Left, this->_data->fenetre))
-			{
-				// PAUSE
-				this->_data->machine.AjoutEtat(EtatRef(new PauseState(_data, *this)));
-
-			}
-			else if(this->_data->imput.IsSpriteClicked(this->_gridSprite, sf::Mouse::Left, this->_data->fenetre)){
+			if(this->_data->imput.IsSpriteClicked(this->_gridSprite, sf::Mouse::Left, this->_data->fenetre)){
                 this->ClickGauche();
 			}
 			else if(this->_data->imput.IsSpriteClicked(this->_gridSprite, sf::Mouse::Right, this->_data->fenetre)){
@@ -86,7 +71,13 @@ namespace TepeGolo{
 	}
 
 	void Grille::Update(float dt){
-        if(STATE_DRAW == gameState || STATE_LOSE == gameState || STATE_WON == gameState){
+        if(STATE_LOSE == gameState){
+            if(this->_temps.getElapsedTime().asSeconds() > TEMPS_AVANT_GAME_OVER){
+                this->_data->machine.AjoutEtat(EtatRef(new GameOverState(_data)), true);
+            }
+        }
+
+        if(STATE_WON == gameState){
             if(this->_temps.getElapsedTime().asSeconds() > TEMPS_AVANT_GAME_OVER){
                 this->_data->machine.AjoutEtat(EtatRef(new GameOverState(_data)), true);
             }
@@ -97,7 +88,7 @@ namespace TepeGolo{
             _elapse = sf::seconds(0);
         }
 
-        this->_drapeauRestants.setString(to_string(this->nbMine));
+        this->_drapeauRestants.setString(to_string(this->nbMine)+"/10");
         this->_elapse = _temps.getElapsedTime();
         this->_chrono.setString(to_string(int(this->_elapse.asSeconds())));
 	}
@@ -107,7 +98,6 @@ namespace TepeGolo{
 
 		this->_data->fenetre.draw( this->_background );
 
-		//this->_data->fenetre.draw( this->_pauseButton );
 		this->_data->fenetre.draw( this->_chrono );
 		this->_data->fenetre.draw( this->_drapeauRestants );
 		this->_data->fenetre.draw( this->_gridSprite );
@@ -133,8 +123,8 @@ namespace TepeGolo{
 		}
 	}
 
-	void Grille::ClickGauche(){
-	    sf::Vector2i posClick = this->_data->imput.GetMousePosition(this->_data->fenetre);
+    void Grille::GetPosition(){
+        sf::Vector2i posClick = this->_data->imput.GetMousePosition(this->_data->fenetre);
 	    sf::FloatRect tailleGrille = _gridSprite.getGlobalBounds();
 	    sf::Vector2f espace = sf::Vector2f((SCREEN_WIDTH - tailleGrille.width)/2, (SCREEN_HEIGHT-tailleGrille.height)/2);
 	    sf::Vector2f posSurGrille = sf::Vector2f(posClick.x-espace.x, posClick.y-espace.y);
@@ -200,98 +190,47 @@ namespace TepeGolo{
             ligne =9;
 	    }
 
+        this->_x = colonne-1;
+        this->_y = ligne-1;
+    }
+
+	void Grille::ClickGauche(){
+        this->GetPosition();
         if(this->firstClick != true){
-            _cases[colonne-1][ligne-1].decouvrir();
+            _cases[this->_x][this->_y].decouvrir();
+            if(!_cases[this->_x][this->_y]._estMinee){
+                this->MontrerCaseAlleatoir(this->_x, this->_y);
+            }
             _temps.restart();
             firstClick = true;
         }
         else{
-            _cases[colonne-1][ligne-1].decouvrir();
+            _cases[this->_x][this->_y].decouvrir();
+            /*if(!_cases[this->_x][this->_y]._estMinee && _cases[this->_x][this->_y].nombreCaseMineVoisine==0){
+                this->MontrerCaseAlleatoir(this->_x, this->_y);
+            }*/
         }
-        if(_cases[colonne-1][ligne-1]._estMinee){
+        //
+        if(_cases[this->_x][this->_y]._estMinee){
             this->MontrerMines();
             gameState = STATE_LOSE;
         }
 	}
 
 	void Grille::ClickDroit(){
-	    sf::Vector2i posClick = this->_data->imput.GetMousePosition(this->_data->fenetre);
-	    sf::FloatRect tailleGrille = _gridSprite.getGlobalBounds();
-	    sf::Vector2f espace = sf::Vector2f((SCREEN_WIDTH - tailleGrille.width)/2, (SCREEN_HEIGHT-tailleGrille.height)/2);
-	    sf::Vector2f posSurGrille = sf::Vector2f(posClick.x-espace.x, posClick.y-espace.y);
+        this->GetPosition();
 
-	    sf::Vector2f tailleCase = sf::Vector2f(tailleGrille.width/9, tailleGrille.height/9);
-	    int colonne, ligne;
-
-        //Determinons la colonne
-	    if(posSurGrille.x < tailleCase.x){
-            colonne =1;
-	    }
-	    else if(posSurGrille.x < tailleCase.x*2){
-            colonne =2;
-	    }
-	    else if(posSurGrille.x < tailleCase.x*3){
-            colonne =3;
-	    }
-	    else if(posSurGrille.x < tailleCase.x*4){
-            colonne =4;
-	    }
-	    else if(posSurGrille.x < tailleCase.x*5){
-            colonne =5;
-	    }
-	    else if(posSurGrille.x < tailleCase.x*6){
-            colonne =6;
-	    }
-	    else if(posSurGrille.x < tailleCase.x*7){
-            colonne =7;
-	    }
-	    else if(posSurGrille.x < tailleCase.x*8){
-            colonne =8;
-	    }
-	    else if(posSurGrille.x < tailleGrille.width){
-            colonne =9;
-	    }
-
-        //Determinons la ligne
-	    if(posSurGrille.y < tailleCase.y){
-            ligne =1;
-	    }
-	    else if(posSurGrille.y < tailleCase.y*2){
-            ligne =2;
-	    }
-	    else if(posSurGrille.y < tailleCase.y*3){
-            ligne =3;
-	    }
-	    else if(posSurGrille.y < tailleCase.y*4){
-            ligne =4;
-	    }
-	    else if(posSurGrille.y < tailleCase.y*5){
-            ligne =5;
-	    }
-	    else if(posSurGrille.y < tailleCase.y*6){
-            ligne =6;
-	    }
-	    else if(posSurGrille.y < tailleCase.y*7){
-            ligne =7;
-	    }
-	    else if(posSurGrille.y < tailleCase.y*8){
-            ligne =8;
-	    }
-	    else if(posSurGrille.y < tailleGrille.height){
-            ligne =9;
-	    }
-
-	    /*if(this->nbMine <= 0 && _cases[colonne-1][ligne-1]._estMarque == false){
+	    if(!_cases[this->_x][this->_y]._estMarque){
                 //marquer
-            _cases[colonne-1][ligne-1].Marquer();
+            _cases[this->_x][this->_y].Marquer();
             nbMine -= 1;
         }
-        else if(this->nbMine <= 0 && _cases[colonne-1][ligne-1]._estMarque ==  true){
+        else if(_cases[this->_x][this->_y]._estMarque){
             //Demarquer
-             _cases[colonne-1][ligne-1].Marquer();
+             _cases[this->_x][this->_y].Marquer();
             nbMine += 1;
-        }*/
-        _cases[colonne-1][ligne-1].Marquer();
+        }
+        this->VerifierGagner();
 	}
 
 	void Grille::GenererMine(){
@@ -343,6 +282,35 @@ namespace TepeGolo{
                 };
             }
         }
+	}
+
+	void Grille::MontrerCaseAlleatoir(int x, int y){
+        srand(time(NULL));
+	    int i = 10;
+	    while (i > 0) {
+            int a(rand() % y);
+            int o(rand() % x);
+            if(_cases[a][o].nombreCaseMineVoisine < 3 && !_cases[a][o]._estMinee && !_cases[a][o]._estDecouvers){
+                _cases[a][o].decouvrir();
+            };
+            i--;
+	    }
+	}
+
+	void Grille::VerifierGagner(){
+	    int caseMine = 0;
+	    if (nbMine == 0){
+            for(int x=0; x<9; x++){
+                for(int y=0; y<9; y++){
+                    if(_cases[x][y]._estMinee && _cases[x][y]._estMarque){
+                        caseMine++;
+                    };
+                }
+            }
+	    }
+	    if(caseMine == 10){
+            gameState = STATE_WON;
+	    }
 	}
 
 }//namespace TepeGolo

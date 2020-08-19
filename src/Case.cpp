@@ -45,8 +45,12 @@ namespace TepeGolo{
         _y = y;
     }
 
-    float Case::getPlace(){
-        return(this->_x, this->_y);
+    float Case::getX(){
+        return this->_x;
+    }
+
+    float Case::getY(){
+        return this->_y;
     }
 
     void Case::placerMine(){

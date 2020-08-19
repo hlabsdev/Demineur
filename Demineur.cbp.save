@@ -4,7 +4,6 @@
 	<Project>
 		<Option title="Demineur" />
 		<Option pch_mode="2" />
-		<Option default_target="Release" />
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="Debug">
@@ -21,20 +20,15 @@
 					<Add library="sfml-graphics-d" />
 					<Add library="sfml-window-d" />
 					<Add library="sfml-system-d" />
-					<Add library="sfml-main-d" />
-					<Add directory="lib" />
-					<LinkerExe value="CppCompiler" />
 				</Linker>
 			</Target>
 			<Target title="Release">
 				<Option output="bin/Release/Demineur" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Release/" />
-				<Option additional_output="$(#sfml);" />
 				<Option type="0" />
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-O2" />
-					<Add option="-std=c++17" />
 					<Add directory="include" />
 				</Compiler>
 				<Linker>
@@ -42,8 +36,6 @@
 					<Add library="sfml-graphics" />
 					<Add library="sfml-window" />
 					<Add library="sfml-system" />
-					<Add library="sfml-main" />
-					<Add directory="lib" />
 				</Linker>
 			</Target>
 		</Build>
@@ -53,9 +45,14 @@
 			<Add option="-fexceptions" />
 			<Add directory="C:/Program Files/CodeBlocks/MinGW/SFML-2.5.1/include" />
 		</Compiler>
+		<ResourceCompiler>
+			<Add directory="C:/Program Files/CodeBlocks/MinGW/SFML-2.5.1/include" />
+		</ResourceCompiler>
 		<Linker>
 			<Add directory="C:/Program Files/CodeBlocks/MinGW/SFML-2.5.1/lib" />
 		</Linker>
+		<Unit filename="Demineur.cbp.save" />
+		<Unit filename="README.md" />
 		<Unit filename="Resources/fonts/Marker Felt.ttf" />
 		<Unit filename="Resources/fonts/arial.ttf" />
 		<Unit filename="Resources/res/1.png" />
@@ -84,13 +81,12 @@
 		<Unit filename="include/Etat.hpp" />
 		<Unit filename="include/EtatMachine.hpp" />
 		<Unit filename="include/GameOverState.hpp" />
+		<Unit filename="include/GameWinState.hpp" />
 		<Unit filename="include/Grille.hpp" />
 		<Unit filename="include/ImputManager.hpp" />
 		<Unit filename="include/MainMenuState.hpp" />
 		<Unit filename="include/Partie.hpp" />
-		<Unit filename="include/PauseState.hpp" />
 		<Unit filename="include/SplashState.hpp" />
-		<Unit filename="libgcc_s_seh-1.dll" />
 		<Unit filename="libstdc++-6.dll" />
 		<Unit filename="libwinpthread-1.dll" />
 		<Unit filename="main.cpp" />
@@ -109,11 +105,11 @@
 		<Unit filename="src/Case.cpp" />
 		<Unit filename="src/EtatMachine.cpp" />
 		<Unit filename="src/GameOverState.cpp" />
+		<Unit filename="src/GameWinState.cpp" />
 		<Unit filename="src/Grille.cpp" />
 		<Unit filename="src/ImputManager.cpp" />
 		<Unit filename="src/MainMenuState.cpp" />
 		<Unit filename="src/Partie.cpp" />
-		<Unit filename="src/PauseState.cpp" />
 		<Unit filename="src/SplashState.cpp" />
 		<Extensions>
 			<AutoVersioning>

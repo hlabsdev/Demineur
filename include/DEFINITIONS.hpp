@@ -8,7 +8,6 @@
 #define SPLASH_SCENE_BACKGROUND_FILEPATH "Resources/res/Splash Background.png"
 #define MAIN_MENU_BACKGROUND_FILEPATH "Resources/res/Main Menu Background.png"
 #define GAME_BACKGROUND_FILEPATH "Resources/res/Game Background.png"
-#define PAUSE_BACKGROUND_FILEPATH "Resources/res/Main Menu Background.png"
 
 #define MAIN_MENU_TITLE_FILEPATH "Resources/res/Game Title.png"
 
@@ -19,10 +18,7 @@
 #define RESUME_BUTTON "Resources/res/Resume Button.png"
 #define RETRY_BUTTON "Resources/res/Retry Button.png"
 #define HOME_BUTTON "Resources/res/Home Button.png"
-
-#define MAIN_MENU_PLAY_BUTTON_OUTER "Resources/res/Play Button Outer.png"
-
-#define PAUSE_BUTTON "Resources/res/Pause Button.png"
+#define WIN_CAPTION "Resources/res/Victoire.png"
 
 #define GRID_SPRITE_FILEPATH "Resources/res/Grid.png"
 //Cases
@@ -36,9 +32,6 @@
 #define DRAPEAU "Resources/res/Flag.png"
 //Cases
 
-#define CASE 8
-#define MINEE 0
-#define VIDE -1
 
 #define STATE_PLAYING 98
 #define STATE_PAUSED 97
@@ -48,4 +41,4 @@
 
 #define FONT_ONE "Resources/fonts/arial.ttf"
 
-#define TEMPS_AVANT_GAME_OVER 3.0
+#define TEMPS_AVANT_GAME_OVER 5.0

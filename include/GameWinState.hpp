@@ -2,14 +2,13 @@
 #include <SFML/Graphics.hpp>
 #include "Etat.hpp"
 #include "Partie.hpp"
-#include "Grille.hpp"
 
 namespace TepeGolo
 {
-	class PauseState : public Etat
+	class GameWinState : public Etat
 	{
 	public:
-		PauseState(GameDataRef data, Grille jeuEnCours);
+		GameWinState(GameDataRef data);
 
 		void Init();
 
@@ -19,12 +18,10 @@ namespace TepeGolo
 
 	private:
 		GameDataRef _data;
-		Grille* _jeuEnCours;
 
-		sf::Sprite _background;
-
-		sf::Sprite _resumeButton;
+		sf::Sprite _retryButton;
 		sf::Sprite _homeButton;
+		sf::Sprite _winImage;
 
 	};
 }

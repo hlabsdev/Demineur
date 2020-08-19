@@ -9,6 +9,7 @@
 #include "Case.hpp"
 
 namespace TepeGolo{
+
     class Grille : public Etat{
         public:
             Grille(GameDataRef data);
@@ -25,12 +26,16 @@ namespace TepeGolo{
             void GenererMine();
             void LancerJeu();
             void MontrerMines();
+            void MontrerCaseAlleatoir(int x, int y);
             void VerifierGagner();
+            void GetPosition();
+
 
             GameDataRef _data;
+            int _x;
+            int _y;
 
             sf::Sprite _background;
-            sf::Sprite _pauseButton;
             sf::Sprite _gridSprite;
             Case _cases[9][9];
 

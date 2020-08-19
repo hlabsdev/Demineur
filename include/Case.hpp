@@ -12,7 +12,8 @@ namespace TepeGolo {
             void afficher(sf::RenderWindow& fenetre);
             void decouvrir();
             void setPlace(float x, float y);
-            float getPlace();
+            float getX();
+            float getY();
             void placerMine();
             void placerCase(float x, float y);
             void Marquer();
