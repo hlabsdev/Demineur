@@ -229,6 +229,7 @@ namespace TepeGolo{
                 _cases[this->_x][this->_y].Marquer();
                 nbMine -= 1;
                 this->VerifierGagner();
+                //
             }
             else if(_cases[this->_x][this->_y]._estMarque && nbMine < 10){
                 //Demarquer
