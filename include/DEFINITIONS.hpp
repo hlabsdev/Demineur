@@ -25,6 +25,7 @@
 #define CASE_VIDE_PATH "Resources/res/Vide.png"
 #define CASE_DOS_PATH "Resources/res/Case.png"
 #define CASE_MINEE_PATH "Resources/res/Bombe.png"
+#define FAUSSE_BOMBE_PATH "Resources/res/Fausse Bombe.png"
 #define UN "Resources/res/1.png"
 #define DEUX "Resources/res/2.png"
 #define TROIS "Resources/res/3.png"

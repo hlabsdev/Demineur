@@ -7,6 +7,7 @@
 #include <string>
 #include "Grille.hpp"
 #include "GameOverState.hpp"
+#include "GameWinState.hpp"
 #include "MainMenuState.hpp"
 #include "Case.hpp"
 #include "DEFINITIONS.hpp"
@@ -74,10 +75,9 @@ namespace TepeGolo{
             }
         }
 
-        if(STATE_WON == gameState){
+        if(gameState == STATE_WON){
             if(this->_temps.getElapsedTime().asSeconds() > TEMPS_AVANT_GAME_OVER){
-                this->_data->machine.AjoutEtat(EtatRef(new GameOverState(_data)), true);
-                //this->_data->machine.RetireEtat();
+                this->_data->machine.AjoutEtat(EtatRef(new GameWinState(_data)), true);
             }
         }
 
@@ -194,48 +194,56 @@ namespace TepeGolo{
 
 	void Grille::ClickGauche(){
         this->GetPosition();
-        if(this->firstClick != true){
-            _cases[this->_x][this->_y].decouvrir();
-            if(!_cases[this->_x][this->_y]._estMinee){
+        if (gameState == STATE_PLAYING && _cases[this->_x][this->_y]._estClicable == true){
+            if(this->firstClick != true){
+                _cases[this->_x][this->_y].decouvrir();
+                if(!_cases[this->_x][this->_y]._estMinee){
+                    this->MontrerCaseAlleatoir(this->_x, this->_y);
+                }
+                _temps.restart();
+                firstClick = true;
+            }
+            else{
+                _cases[this->_x][this->_y].decouvrir();
+                }
+
+            if(!_cases[this->_x][this->_y]._estMinee && _cases[this->_x][this->_y].nombreCaseMineVoisine==0){
                 this->MontrerCaseAlleatoir(this->_x, this->_y);
             }
-            _temps.restart();
-            firstClick = true;
-        }
-        else{
-            _cases[this->_x][this->_y].decouvrir();
+
+            //
+            if(_cases[this->_x][this->_y]._estMinee){
+                this->MontrerMines();
+                gameState = STATE_LOSE;
             }
 
-        if(!_cases[this->_x][this->_y]._estMinee && _cases[this->_x][this->_y].nombreCaseMineVoisine==0){
-            this->MontrerCaseAlleatoir(this->_x, this->_y);
-        }
-
-        //
-        if(_cases[this->_x][this->_y]._estMinee){
-            this->MontrerMines();
-            gameState = STATE_LOSE;
         }
 	}
 
 	void Grille::ClickDroit(){
         this->GetPosition();
 
-	    if(!_cases[this->_x][this->_y]._estMarque){
-                //marquer
-            _cases[this->_x][this->_y].Marquer();
-            nbMine -= 1;
+        if (gameState == STATE_PLAYING && _cases[this->_x][this->_y]._estClicable == true ){
+            if(!_cases[this->_x][this->_y]._estMarque && !_cases[this->_x][this->_y]._estDecouvers && nbMine > 0){
+                    //marquer
+                _cases[this->_x][this->_y].Marquer();
+                nbMine -= 1;
+                this->VerifierGagner();
+            }
+            else if(_cases[this->_x][this->_y]._estMarque && nbMine < 10){
+                //Demarquer
+                _cases[this->_x][this->_y].Marquer();
+               nbMine += 1;
+
+                this->VerifierGagner();
+            }
         }
-        else if(_cases[this->_x][this->_y]._estMarque){
-            //Demarquer
-             _cases[this->_x][this->_y].Marquer();
-            nbMine += 1;
-        }
-        this->VerifierGagner();
 	}
 
 	void Grille::GenererMine(){
         srand(time(NULL));
-        int mineRestantAPlacer = 11;
+        int mineRestantAPlacer = 10;
+        int j = 0;
 
         while (mineRestantAPlacer > 0) {
             int x(rand() % 9);
@@ -244,6 +252,7 @@ namespace TepeGolo{
             _cases[x][y].placerMine();
             if (_cases[x][y]._estMinee){
                 mineRestantAPlacer--;
+                j++;
                 if (x!=0 && y!=0){
                     _cases[x][y-1].ajoutVoisin();
                     _cases[x][y+1].ajoutVoisin();
@@ -251,26 +260,26 @@ namespace TepeGolo{
                     _cases[x-1][y].ajoutVoisin();
                     _cases[x+1][y].ajoutVoisin();
                 }
-                else if (x==0 && y==0){
+                if (x==0 && y==0){
                     _cases[x][y-1].ajoutVoisin();
                     _cases[x+1][y].ajoutVoisin();
 
                     _cases[x-1][y].ajoutVoisin();
                     _cases[x+1][y].ajoutVoisin();
                 }
-                else if (x==0 && y!=0){
+                if (x==0 && y!=0){
                     _cases[x][y-1].ajoutVoisin();
                     _cases[x][y+1].ajoutVoisin();
                     _cases[x+1][y].ajoutVoisin();
                 }
-                else if (x!=0 && y==0){
+                if (x!=0 && y==0){
                     _cases[x][y].ajoutVoisin();
                     _cases[x-1][y+1].ajoutVoisin();
                     _cases[x+1][y].ajoutVoisin();
                 }
 
             }
-
+            
         }
 	}
 
@@ -280,16 +289,26 @@ namespace TepeGolo{
             for(int y=0; y<9; y++){
                 if(_cases[x][y]._estMinee){
                     _cases[x][y].decouvrir();
-                };
+                    _cases[x][y]._estClicable = false;
+                }
+                //Montrer les fausses bombes
+                if(_cases[x][y]._estMarque && !_cases[x][y]._estMinee){
+                    _cases[x][y].FausseBombe();
+                }
+
             }
         }
 	}
 
 	void Grille::MontrerCaseAlleatoir(int x, int y){
+	    int i;
 	    if (this->firstClick){
-            int i = 10;
-	    }else  int i = 
-	    
+            i = 20;
+	    }
+	    else {
+	        i = 50;
+	    }
+
 	    while (i > 0) {
             int a(rand() % 9);
             int o(rand() % 9);
@@ -301,17 +320,15 @@ namespace TepeGolo{
 	}
 
 	void Grille::VerifierGagner(){
-	    int caseMine = 0;
-	    if (nbMine == 0){
-            for(int x=0; x<9; x++){
-                for(int y=0; y<9; y++){
-                    if(_cases[x][y]._estMinee && _cases[x][y]._estMarque){
-                        caseMine++;
-                    };
-                }
+	    int caseMarquee = 0;
+        for(int x=0; x<9; x++){
+            for(int y=0; y<9; y++){
+                if(_cases[x][y]._estMinee && _cases[x][y]._estMarque){
+                    caseMarquee++;
+                };
             }
-	    }
-	    if(caseMine == 10){
+        }
+	    if(caseMarquee == 10 && nbMine == 0){
             gameState = STATE_WON;
 	    }
 	}

@@ -23,7 +23,6 @@ UsedUserAreasWarning=no
 OutputDir=D:\
 OutputBaseFilename=DemineurSetup
 SetupIconFile=D:\Clients\Demineur\bin\Release\Resources\res\icon.ico
-Password=TepeGolo
 Compression=lzma
 SolidCompression=yes
 WizardStyle=modern

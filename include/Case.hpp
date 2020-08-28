@@ -17,16 +17,17 @@ namespace TepeGolo {
             void placerMine();
             void placerCase(float x, float y);
             void Marquer();
+            void FausseBombe();
             void ajoutVoisin();
             int nombreCaseMineVoisine;
 
-//        private:
             GameDataRef _data = std::make_shared<GameData>();
             float _x;
             float _y;
             bool _estMarque = false;
             bool _estMinee = false;
             bool _estDecouvers = false;
+            bool _estClicable = true;
             sf::Sprite _face;
 
 
